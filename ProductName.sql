@@ -1,4 +1,3 @@
-
 -- Created by GitHub Copilot in SSMS - review carefully before executing
 USE AdventureWorks2008R2;
 GO
@@ -20,11 +19,14 @@ SELECT
     p.SellEndDate,
     p.DiscontinuedDate,
     ps.Name                     AS SubcategoryName,
+    pc.Name                     AS CategoryName,
     pm.Name                     AS ModelName,
     p.ModifiedDate
 FROM Production.Product AS p
 LEFT JOIN Production.ProductSubcategory AS ps
     ON p.ProductSubcategoryID = ps.ProductSubcategoryID
+LEFT JOIN Production.ProductCategory AS pc
+    ON ps.ProductCategoryID = pc.ProductCategoryID
 LEFT JOIN Production.ProductModel AS pm
     ON p.ProductModelID = pm.ProductModelID
 ORDER BY p.ProductID;
